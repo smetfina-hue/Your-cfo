@@ -1,0 +1,777 @@
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Финансовый директор на аутсорсе</title>
+<style>
+  :root {
+    --bg: #0b1120;
+    --bg-soft: #111a2e;
+    --card: #16213a;
+    --card-hover: #1c2a48;
+    --text: #e8eefc;
+    --text-muted: #9aa9c7;
+    --accent: #4f8cff;
+    --accent-2: #7c5cff;
+    --accent-3: #22d3a6;
+    --border: rgba(124, 156, 255, 0.16);
+    --radius: 18px;
+    --shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 90px 0 70px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: -40% -20% auto -20%;
+    height: 620px;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(79, 140, 255, 0.28), transparent 55%),
+      radial-gradient(circle at 70% 30%, rgba(124, 92, 255, 0.24), transparent 55%),
+      radial-gradient(circle at 50% 80%, rgba(34, 211, 166, 0.14), transparent 60%);
+    filter: blur(20px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero .container { position: relative; z-index: 1; }
+
+  .badge {
+    display: inline-block;
+    padding: 7px 16px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 13px;
+    letter-spacing: 0.4px;
+    color: var(--text-muted);
+    background: rgba(124, 156, 255, 0.06);
+    margin-bottom: 26px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5.2vw, 3.6rem);
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(100deg, #ffffff 0%, #9fc0ff 45%, #b9a4ff 75%, #22d3a6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    margin-bottom: 22px;
+  }
+
+  .hero p.sub {
+    max-width: 680px;
+    margin: 0 auto 34px;
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    color: var(--text-muted);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 30px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+
+  .btn-primary {
+    background: linear-gradient(120deg, var(--accent), var(--accent-2));
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(79, 140, 255, 0.35);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 38px rgba(124, 92, 255, 0.45);
+  }
+
+  .btn-ghost {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.09);
+    transform: translateY(-3px);
+  }
+
+  .hero-note {
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Sections ---------- */
+  section { padding: 70px 0; }
+
+  .section-head {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 46px;
+  }
+
+  .section-head h2 {
+    font-size: clamp(1.5rem, 3.4vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+    background: linear-gradient(100deg, #ffffff, #9fc0ff 70%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .section-head p {
+    color: var(--text-muted);
+    font-size: 1.02rem;
+  }
+
+  /* ---------- Symptoms ---------- */
+  .symptoms {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .symptom {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 22px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: transform .3s ease, background .3s ease, border-color .3s ease;
+  }
+
+  .symptom:hover {
+    transform: translateY(-5px);
+    background: var(--card-hover);
+    border-color: rgba(124, 156, 255, 0.35);
+  }
+
+  .symptom .dot {
+    flex: 0 0 10px;
+    width: 10px;
+    height: 10px;
+    margin-top: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-3));
+    box-shadow: 0 0 12px rgba(79, 140, 255, 0.8);
+  }
+
+  .symptom p { font-size: 15px; color: var(--text); }
+
+  /* ---------- Cards ---------- */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 22px;
+  }
+
+  .card {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    overflow: hidden;
+    transition: transform .35s ease, border-color .35s ease, background .35s ease, box-shadow .35s ease;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+    opacity: 0;
+    transition: opacity .35s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    background: var(--card-hover);
+    border-color: rgba(124, 156, 255, 0.4);
+    box-shadow: var(--shadow);
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  .card .icon {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    background: linear-gradient(135deg, rgba(79, 140, 255, 0.2), rgba(124, 92, 255, 0.2));
+    border: 1px solid var(--border);
+    transition: transform .35s ease;
+  }
+
+  .card:hover .icon { transform: scale(1.08) rotate(-4deg); }
+
+  .card h3 {
+    font-size: 1.18rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+
+  .card p {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+  }
+
+  .card ul {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  .card ul li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .card ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent-3);
+    font-weight: 700;
+  }
+
+  .card .cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    transition: gap .25s ease, color .25s ease;
+  }
+
+  .card .cta-link:hover { gap: 12px; color: #8fb4ff; }
+
+  /* ---------- Tools tags ---------- */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .tag {
+    padding: 11px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    background: rgba(124, 156, 255, 0.08);
+    border: 1px solid var(--border);
+    transition: all .3s ease;
+    cursor: default;
+  }
+
+  .tag:hover {
+    background: linear-gradient(120deg, rgba(79, 140, 255, 0.25), rgba(124, 92, 255, 0.25));
+    border-color: rgba(124, 156, 255, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(79, 140, 255, 0.2);
+  }
+
+  /* ---------- Trust ---------- */
+  .trust {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    text-align: center;
+  }
+
+  .trust-item {
+    padding: 30px 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: transform .3s ease, border-color .3s ease;
+  }
+
+  .trust-item:hover {
+    transform: translateY(-5px);
+    border-color: rgba(34, 211, 166, 0.4);
+  }
+
+  .trust-item .num {
+    font-size: 2.4rem;
+    font-weight: 800;
+    background: linear-gradient(120deg, #9fc0ff, #22d3a6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+
+  .trust-item p { font-size: 14px; color: var(--text-muted); }
+
+  /* ---------- Formats ---------- */
+  .formats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .format {
+    padding: 28px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: transform .35s ease, background .35s ease, border-color .35s ease;
+  }
+
+  .format:hover {
+    transform: translateY(-6px);
+    background: var(--card-hover);
+    border-color: rgba(124, 156, 255, 0.4);
+  }
+
+  .format .step {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent-3);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .format h3 { font-size: 1.1rem; margin-bottom: 10px; color: #fff; }
+  .format p { font-size: 14px; color: var(--text-muted); }
+
+  /* ---------- Form ---------- */
+  .form-section {
+    position: relative;
+  }
+
+  .form-wrap {
+    max-width: 620px;
+    margin: 0 auto;
+    background: linear-gradient(160deg, var(--card), var(--bg-soft));
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 42px 34px;
+    box-shadow: var(--shadow);
+  }
+
+  .form-wrap h2 {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 10px;
+    background: linear-gradient(100deg, #ffffff, #9fc0ff 70%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .form-wrap .form-sub {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14.5px;
+    margin-bottom: 30px;
+  }
+
+  .field { margin-bottom: 18px; }
+
+  .field label {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .field label .opt { color: var(--text-muted); font-weight: 400; }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    outline: none;
+    transition: border-color .25s ease, background .25s ease, box-shadow .25s ease;
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder { color: #6c7c9c; }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-color: var(--accent);
+    background: rgba(79, 140, 255, 0.06);
+    box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.15);
+  }
+
+  .field textarea { resize: vertical; min-height: 90px; }
+
+  .form-wrap .btn-primary {
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px;
+    font-size: 16px;
+    padding: 17px;
+  }
+
+  .form-note {
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+
+  .form-note a { color: var(--accent); text-decoration: none; }
+  .form-note a:hover { text-decoration: underline; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+
+  footer p { font-size: 13.5px; color: var(--text-muted); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 640px) {
+    .hero { padding: 60px 0 50px; }
+    section { padding: 50px 0; }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .hero-actions .btn { justify-content: center; }
+    .form-wrap { padding: 30px 22px; }
+    .card { padding: 26px 22px; }
+    .symptom { padding: 18px; }
+    .tag { padding: 9px 16px; font-size: 13px; }
+    .trust-item .num { font-size: 2rem; }
+  }
+
+  @media (max-width: 380px) {
+    .container { padding: 0 14px; }
+    .btn { padding: 13px 22px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <span class="badge">Финансовый директор на аутсорсе</span>
+    <h1>Растёте — но прибыль не растёт вместе с вами?</h1>
+    <p class="sub">
+      Управленческий учёт, платёжная дисциплина и финансовое моделирование
+      для собственников малого и среднего бизнеса. Опыт финансового директора
+      уровня крупной компании — без затрат на штатную единицу.
+    </p>
+    <div class="hero-actions">
+      <a href="#form" class="btn btn-primary">→ Обсудить мою ситуацию</a>
+      <a href="#cards" class="btn btn-ghost">Как это работает</a>
+    </div>
+    <p class="hero-note">15 минут · без презентаций и продаж · компании по всей России</p>
+  </div>
+</header>
+
+<!-- SYMPTOMS -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Узнаёте себя?</h2>
+      <p>Если хотя бы один пункт про вас — читайте дальше.</p>
+    </div>
+    <div class="symptoms">
+      <div class="symptom"><span class="dot"></span><p>Прибыль в отчётах есть — а денег на счёте нет.</p></div>
+      <div class="symptom"><span class="dot"></span><p>Выручка растёт — а прибыль падает.</p></div>
+      <div class="symptom"><span class="dot"></span><p>Непонятно, стоит ли запускать новый проект и сколько денег ему нужно.</p></div>
+      <div class="symptom"><span class="dot"></span><p>Отчёты есть, но им не доверяете и не понимаете, откуда цифры.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CARDS -->
+<section id="cards">
+  <div class="container">
+    <div class="section-head">
+      <h2>Типичные вопросы — и что вы получаете в ответ</h2>
+      <p>Каждая задача решается с конкретным результатом на выходе.</p>
+    </div>
+    <div class="cards">
+
+      <article class="card">
+        <div class="icon">💰</div>
+        <h3>«Прибыль есть, а денег нет. Почему?»</h3>
+        <p>Сопоставим прибыль с движением денег и покажем, где именно возникает разрыв — с суммой и датой.</p>
+        <ul>
+          <li>Платёжный календарь</li>
+          <li>Регламент согласования платежей</li>
+          <li>Прогноз кассовых разрывов</li>
+        </ul>
+        <a href="#form" class="cta-link">→ Увидеть свои кассовые разрывы</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">📊</div>
+        <h3>«Выручка растёт, а прибыль падает. Где теряем маржу?»</h3>
+        <p>Проверим влияние цен, себестоимости, структуры продаж и накладных расходов. Настроим учёт в нужных разрезах.</p>
+        <ul>
+          <li>Комплект управленческих отчётов</li>
+          <li>Регламент обновления</li>
+          <li>Понимание, что приносит прибыль</li>
+        </ul>
+        <a href="#form" class="cta-link">→ Найти, где теряется маржа</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">📈</div>
+        <h3>«Стоит ли запускать новый проект и сколько денег потребуется?»</h3>
+        <p>Построим модель на основе цен, объёмов продаж, затрат и вложений. Просчитаем сценарии до вложения денег.</p>
+        <ul>
+          <li>Финансовая модель с допущениями</li>
+          <li>Сценарии: медленные продажи, рост затрат</li>
+          <li>Точка безубыточности</li>
+        </ul>
+        <a href="#form" class="cta-link">→ Просчитать новый проект</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS TAGS -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Инструменты в работе</h2>
+      <p>Только то, что реально помогает управлять финансами.</p>
+    </div>
+    <div class="tags">
+      <span class="tag">Управленческий учёт</span>
+      <span class="tag">Платёжный календарь</span>
+      <span class="tag">Финансовое моделирование</span>
+      <span class="tag">P&L</span>
+      <span class="tag">Cash Flow</span>
+      <span class="tag">Баланс</span>
+      <span class="tag">Сценарии</span>
+      <span class="tag">Точка безубыточности</span>
+      <span class="tag">Регламент платежей</span>
+      <span class="tag">Маржинальный анализ</span>
+      <span class="tag">Бюджетирование</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Опыт, на который можно опереться</h2>
+      <p>Практика построения учёта, платёжной дисциплины и финансовых моделей в реальных компаниях.</p>
+    </div>
+    <div class="trust">
+      <div class="trust-item">
+        <div class="num">20+</div>
+        <p>лет в финансах</p>
+      </div>
+      <div class="trust-item">
+        <div class="num">от бухгалтера<br>до финдиректора</div>
+        <p>весь путь изнутри</p>
+      </div>
+      <div class="trust-item">
+        <div class="num">по всей России</div>
+        <p>работаем с компаниями</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATS -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Выберите формат под свою задачу</h2>
+      <p>Можно начать с малого — и расширять по мере необходимости.</p>
+    </div>
+    <div class="formats">
+      <div class="format">
+        <span class="step">Шаг 1</span>
+        <h3>Разовая диагностика</h3>
+        <p>Найти причину проблемы и понять, с чего начать.</p>
+      </div>
+      <div class="format">
+        <span class="step">Шаг 2</span>
+        <h3>Проект с результатом</h3>
+        <p>Настроить отчётность, платежи или финансовую модель.</p>
+      </div>
+      <div class="format">
+        <span class="step">Шаг 3</span>
+        <h3>Регулярное сопровождение</h3>
+        <p>Отчётность и поддержка финансового директора на постоянной основе.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section id="form" class="form-section">
+  <div class="container">
+    <div class="form-wrap">
+      <h2>Обсудим, как масштабироваться без потери прибыли</h2>
+      <p class="form-sub">Оставьте контакты — свяжемся в течение рабочего дня и договоримся о короткой встрече.</p>
+
+      <form id="leadForm" novalidate>
+        <div class="field">
+          <label for="name">Как к вам обращаться</label>
+          <input type="text" id="name" name="name" placeholder="Иван" required>
+        </div>
+
+        <div class="field">
+          <label for="phone">Телефон</label>
+          <input type="tel" id="phone" name="phone" placeholder="+7 ___ ___-__-__" required>
+        </div>
+
+        <div class="field">
+          <label for="email">Email <span class="opt">(если удобнее письмом)</span></label>
+          <input type="email" id="email" name="email" placeholder="ivan@company.ru">
+        </div>
+
+        <div class="field">
+          <label for="company">Компания <span class="opt">(необязательно)</span></label>
+          <input type="text" id="company" name="company" placeholder="ООО «Ромашка»">
+        </div>
+
+        <div class="field">
+          <label for="task">Что хотите решить? <span class="opt">(необязательно)</span></label>
+          <textarea id="task" name="task" placeholder="Например: выручка растёт, прибыль падает"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">→ Записаться на встречу</button>
+
+        <p class="form-note">
+          Нажимая кнопку, вы соглашаетесь с <a href="#">политикой обработки персональных данных</a>.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>Финансовый директор на аутсорсе · Управленческий учёт, платежи и финансовое моделирование</p>
+  </div>
+</footer>
+
+<script>
+  // Валидация формы + экран «спасибо»
+  const form = document.getElementById('leadForm');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = form.name.value.trim();
+    const phone = form.phone.value.trim();
+    const email = form.email.value.trim();
+
+    if (!name) {
+      alert('Пожалуйста, укажите, как к вам обращаться');
+      form.name.focus();
+      return;
+    }
+    if (!phone) {
+      alert('Укажите телефон — по нему свяжемся');
+      form.phone.focus();
+      return;
+    }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('Проверьте адрес электронной почты');
+      form.email.focus();
+      return;
+    }
+
+    // Показываем экран «спасибо» вместо формы
+    const wrap = form.parentElement;
+    wrap.innerHTML = `
+      <h2>Спасибо! Заявка получена</h2>
+      <p class="form-sub">
+        Свяжемся с вами в течение рабочего дня — договоримся о короткой встрече
+        и обсудим вашу задачу.
+      </p>
+      <p class="form-sub" style="margin-bottom:26px;">
+        А пока — если хотите подготовиться, подумайте, какие данные у вас уже есть:
+        отчёты, выгрузки, таблицы. Это ускорит разбор.
+      </p>
+      <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;">→ Вернуться на сайт</a>
+    `;
+    window.scrollTo({ top: wrap.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
