@@ -89,7 +89,7 @@
   }
 
   .hero p.sub {
-    max-width: 680px;
+    max-width: 720px;
     margin: 0 auto 34px;
     font-size: clamp(1rem, 2.2vw, 1.2rem);
     color: var(--text-muted);
@@ -353,13 +353,14 @@
   }
 
   .trust-item .num {
-    font-size: 2.4rem;
+    font-size: 2.1rem;
     font-weight: 800;
     background: linear-gradient(120deg, #9fc0ff, #22d3a6);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    line-height: 1.2;
   }
 
   .trust-item p { font-size: 14px; color: var(--text-muted); }
@@ -510,7 +511,7 @@
     .card { padding: 26px 22px; }
     .symptom { padding: 18px; }
     .tag { padding: 9px 16px; font-size: 13px; }
-    .trust-item .num { font-size: 2rem; }
+    .trust-item .num { font-size: 1.8rem; }
   }
 
   @media (max-width: 380px) {
@@ -529,7 +530,9 @@
     <p class="sub">
       Управленческий учёт, платёжная дисциплина и финансовое моделирование
       для собственников малого и среднего бизнеса. Опыт финансового директора
-      уровня крупной компании — без затрат на штатную единицу.
+      в группах компаний с несколькими юрлицами, штатом 300+ человек
+      и оборотом от нескольких миллиардов рублей. Теперь эти же практики —
+      для малого и среднего бизнеса, без затрат на штатную единицу.
     </p>
     <div class="hero-actions">
       <a href="#form" class="btn btn-primary">→ Обсудить мою ситуацию</a>
@@ -632,20 +635,20 @@
   <div class="container">
     <div class="section-head">
       <h2>Опыт, на который можно опереться</h2>
-      <p>Практика построения учёта, платёжной дисциплины и финансовых моделей в реальных компаниях.</p>
+      <p>Практика построения учёта, платёжной дисциплины и финансовых моделей — в группах компаний с несколькими юрлицами.</p>
     </div>
     <div class="trust">
       <div class="trust-item">
         <div class="num">20+</div>
-        <p>лет в финансах</p>
+        <p>лет в финансах — от бухгалтера до финдиректора</p>
       </div>
       <div class="trust-item">
-        <div class="num">от бухгалтера<br>до финдиректора</div>
-        <p>весь путь изнутри</p>
+        <div class="num">300+</div>
+        <p>человек в штате компаний, где вёл финансы</p>
       </div>
       <div class="trust-item">
-        <div class="num">по всей России</div>
-        <p>работаем с компаниями</p>
+        <div class="num">от нескольких млрд ₽</div>
+        <p>оборот групп компаний с несколькими юрлицами</p>
       </div>
     </div>
   </div>
@@ -755,7 +758,6 @@
       return;
     }
 
-    // Показываем экран «спасибо» вместо формы
     const wrap = form.parentElement;
     wrap.innerHTML = `
       <h2>Спасибо! Заявка получена</h2>
