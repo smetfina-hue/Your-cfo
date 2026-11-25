@@ -734,10 +734,10 @@
 <!-- ОБНОВЛЕННЫЙ СКРИПТ ДЛЯ ОТПРАВКИ В TELEGRAM -->
 <script>
   // ==========================================
-  // ⚠️ НАСТРОЙКИ TELEGRAM (ВПИШИТЕ СВОИ ДАННЫЕ)
+  // ⚠️ ВАЖНО: ЗАМЕНИТЕ ТЕКСТ В КАВЫЧКАХ НА СВОИ ДАННЫЕ
   // ==========================================
-  const TG_TOKEN = 'ВАШ_ТОКЕН_ОТ_BOTFATHER'; // Например: 1234567890:ABCdefGHIjklMNOpqrSTUvwxYZ
-  const TG_CHAT_ID = 'ВАШ_CHAT_ID';         // Например: 123456789
+  const TG_TOKEN = '9047432757:ВАШ_ТОКЕН_ИЗ_BOTFATHER'; 
+  const TG_CHAT_ID = 'ВАШ_ID_ИЗ_ССЫЛКИ'; // Например: '123456789'
   
   const form = document.getElementById('leadForm');
 
@@ -785,13 +785,13 @@
     `;
 
     // Отправка в Telegram Bot API
-    fetch(`https://api.telegram.org/bot${9047432757:AAE9MB6LcK_wf4D0MNltTii3lQYwCDMXZk8}/sendMessage`, {
+    fetch(`https://api.telegram.org/bot${'9047432757:AAE9MB6LcK_wf4D0MNltTii3lQYwCDMXZk8'}/sendMessage`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        chat_id: 558717789,
+        chat_id: '305279891',
         text: text,
         parse_mode: 'HTML'
       })
