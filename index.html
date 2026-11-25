@@ -526,12 +526,12 @@
 <header class="hero">
   <div class="container">
     <span class="badge">Финансовый директор на аутсорсе</span>
-    <h1>Растёте — но прибыль не растёт вместе с вами?</h1>
+    <h1>Растёте, но прибыль не растёт вместе с вами?</h1>
     <p class="sub">
       Управленческий учёт, платёжная дисциплина и финансовое моделирование
       для собственников малого и среднего бизнеса. Опыт финансового директора
       в группах компаний с несколькими юрлицами, штатом 300+ человек
-      и оборотом от нескольких миллиардов рублей. Теперь эти же практики —
+      и оборотом от нескольких миллиардов рублей. Теперь эти же практики
       для малого и среднего бизнеса, без затрат на штатную единицу.
     </p>
     <div class="hero-actions">
@@ -547,11 +547,11 @@
   <div class="container">
     <div class="section-head">
       <h2>Узнаёте себя?</h2>
-      <p>Если хотя бы один пункт про вас — читайте дальше.</p>
+      <p>Если хотя бы один пункт про вас, читайте дальше.</p>
     </div>
     <div class="symptoms">
-      <div class="symptom"><span class="dot"></span><p>Прибыль в отчётах есть — а денег на счёте нет.</p></div>
-      <div class="symptom"><span class="dot"></span><p>Выручка растёт — а прибыль падает.</p></div>
+      <div class="symptom"><span class="dot"></span><p>Прибыль в отчётах есть, а денег на счёте нет.</p></div>
+      <div class="symptom"><span class="dot"></span><p>Выручка растёт, а прибыль падает.</p></div>
       <div class="symptom"><span class="dot"></span><p>Непонятно, стоит ли запускать новый проект и сколько денег ему нужно.</p></div>
       <div class="symptom"><span class="dot"></span><p>Отчёты есть, но им не доверяете и не понимаете, откуда цифры.</p></div>
     </div>
@@ -562,7 +562,7 @@
 <section id="cards">
   <div class="container">
     <div class="section-head">
-      <h2>Типичные вопросы — и что вы получаете в ответ</h2>
+      <h2>Типичные вопросы, и что вы получаете в ответ</h2>
       <p>Каждая задача решается с конкретным результатом на выходе.</p>
     </div>
     <div class="cards">
@@ -570,7 +570,7 @@
       <article class="card">
         <div class="icon">💰</div>
         <h3>«Прибыль есть, а денег нет. Почему?»</h3>
-        <p>Сопоставим прибыль с движением денег и покажем, где именно возникает разрыв — с суммой и датой.</p>
+        <p>Сопоставим прибыль с движением денег и покажем, где именно возникает разрыв с суммой и датой.</p>
         <ul>
           <li>Платёжный календарь</li>
           <li>Регламент согласования платежей</li>
@@ -635,12 +635,12 @@
   <div class="container">
     <div class="section-head">
       <h2>Опыт, на который можно опереться</h2>
-      <p>Практика построения учёта, платёжной дисциплины и финансовых моделей — в группах компаний с несколькими юрлицами.</p>
+      <p>Практика построения учёта, платёжной дисциплины и финансовых моделей в группах компаний с несколькими юрлицами.</p>
     </div>
     <div class="trust">
       <div class="trust-item">
         <div class="num">20+</div>
-        <p>лет в финансах — от бухгалтера до финдиректора</p>
+        <p>лет в финансах, от бухгалтера до финдиректора</p>
       </div>
       <div class="trust-item">
         <div class="num">300+</div>
@@ -659,7 +659,7 @@
   <div class="container">
     <div class="section-head">
       <h2>Выберите формат под свою задачу</h2>
-      <p>Можно начать с малого — и расширять по мере необходимости.</p>
+      <p>Можно начать с малого и расширять по мере необходимости.</p>
     </div>
     <div class="formats">
       <div class="format">
@@ -686,7 +686,7 @@
   <div class="container">
     <div class="form-wrap">
       <h2>Обсудим, как масштабироваться без потери прибыли</h2>
-      <p class="form-sub">Оставьте контакты — свяжемся в течение рабочего дня и договоримся о короткой встрече.</p>
+      <p class="form-sub">Оставьте контакты, свяжемся в течение рабочего дня и договоримся о короткой встрече.</p>
 
       <form id="leadForm" novalidate>
         <div class="field">
@@ -731,8 +731,14 @@
   </div>
 </footer>
 
+<!-- ОБНОВЛЕННЫЙ СКРИПТ ДЛЯ ОТПРАВКИ В TELEGRAM -->
 <script>
-  // Валидация формы + экран «спасибо»
+  // ==========================================
+  // ⚠️ НАСТРОЙКИ TELEGRAM (ВПИШИТЕ СВОИ ДАННЫЕ)
+  // ==========================================
+  const TG_TOKEN = 'ВАШ_ТОКЕН_ОТ_BOTFATHER'; // Например: 1234567890:ABCdefGHIjklMNOpqrSTUvwxYZ
+  const TG_CHAT_ID = 'ВАШ_CHAT_ID';         // Например: 123456789
+  
   const form = document.getElementById('leadForm');
 
   form.addEventListener('submit', function (e) {
@@ -741,14 +747,17 @@
     const name = form.name.value.trim();
     const phone = form.phone.value.trim();
     const email = form.email.value.trim();
+    const company = form.company.value.trim();
+    const task = form.task.value.trim();
 
+    // Валидация
     if (!name) {
       alert('Пожалуйста, укажите, как к вам обращаться');
       form.name.focus();
       return;
     }
     if (!phone) {
-      alert('Укажите телефон — по нему свяжемся');
+      alert('Укажите телефон, по нему свяжемся');
       form.phone.focus();
       return;
     }
@@ -758,20 +767,61 @@
       return;
     }
 
-    const wrap = form.parentElement;
-    wrap.innerHTML = `
-      <h2>Спасибо! Заявка получена</h2>
-      <p class="form-sub">
-        Свяжемся с вами в течение рабочего дня — договоримся о короткой встрече
-        и обсудим вашу задачу.
-      </p>
-      <p class="form-sub" style="margin-bottom:26px;">
-        А пока — если хотите подготовиться, подумайте, какие данные у вас уже есть:
-        отчёты, выгрузки, таблицы. Это ускорит разбор.
-      </p>
-      <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;">→ Вернуться на сайт</a>
+    // Меняем кнопку на "Отправка..."
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.innerHTML = 'Отправка...';
+    submitBtn.disabled = true;
+
+    // Формируем сообщение для Telegram
+    const text = `
+🔥 <b>Новая заявка с сайта!</b>
+
+👤 <b>Имя:</b> ${name}
+📞 <b>Телефон:</b> ${phone}
+📧 <b>Email:</b> ${email || 'Не указан'}
+🏢 <b>Компания:</b> ${company || 'Не указана'}
+📝 <b>Задача:</b> ${task || 'Не указана'}
     `;
-    window.scrollTo({ top: wrap.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+
+    // Отправка в Telegram Bot API
+    fetch(`https://api.telegram.org/bot${9047432757:AAE9MB6LcK_wf4D0MNltTii3lQYwCDMXZk8}/sendMessage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: 558717789,
+        text: text,
+        parse_mode: 'HTML'
+      })
+    })
+    .then(response => {
+      if (!response.ok) throw new Error('Ошибка сети');
+      
+      // Показываем экран «Спасибо»
+      const wrap = form.parentElement;
+      wrap.innerHTML = `
+        <h2>Спасибо! Заявка получена</h2>
+        <p class="form-sub">
+          Свяжемся с вами в течение рабочего дня, договоримся о короткой встрече
+          и обсудим вашу задачу.
+        </p>
+        <p class="form-sub" style="margin-bottom:26px;">
+          А пока, если хотите подготовиться, подумайте, какие данные у вас уже есть:
+          отчёты, выгрузки, таблицы. Это ускорит разбор.
+        </p>
+        <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;">→ Вернуться на сайт</a>
+      `;
+      window.scrollTo({ top: wrap.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+    })
+    .catch(error => {
+      // Если ошибка (например, неверный токен)
+      console.error(error);
+      alert('Произошла ошибка при отправке. Пожалуйста, попробуйте позже или свяжитесь с нами напрямую.');
+      submitBtn.innerHTML = originalBtnText;
+      submitBtn.disabled = false;
+    });
   });
 </script>
 
